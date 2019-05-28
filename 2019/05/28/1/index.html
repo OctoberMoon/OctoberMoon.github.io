@@ -101,7 +101,7 @@ var _hmt = _hmt || [];
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="高并发,优化,mysql,">
 
 
 
@@ -112,17 +112,18 @@ var _hmt = _hmt || [];
 
 
 
-<meta name="description" content="学海无涯,不求甚解">
-<meta name="keywords" content="laravel,linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="莫名四下里">
-<meta property="og:url" content="https://wujianan.github.io/categories/linux/index.html">
+<meta name="description" content="流量优化(目的:可以使用下载工具下载，又可以防止盗链的方法)     序号 优化方法 解决方案     1 防盗链处理 1. 判断引用地址,判断浏览器请求时HTTP头的Referer字段的值 2.使用登录验证 缺点是访客无法匿名下载 3. 使用cookie 缺点: 同 2 4. 使用POST下载 缺点: 无法使用下载工具，更没法实现断点续传 5.使用图形验证码 缺点: 影响用户体验 6. 使用动">
+<meta name="keywords" content="高并发,优化,mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高并发优化记录">
+<meta property="og:url" content="https://wujianan.github.io/2019/05/28/1/index.html">
 <meta property="og:site_name" content="莫名四下里">
-<meta property="og:description" content="学海无涯,不求甚解">
+<meta property="og:description" content="流量优化(目的:可以使用下载工具下载，又可以防止盗链的方法)     序号 优化方法 解决方案     1 防盗链处理 1. 判断引用地址,判断浏览器请求时HTTP头的Referer字段的值 2.使用登录验证 缺点是访客无法匿名下载 3. 使用cookie 缺点: 同 2 4. 使用POST下载 缺点: 无法使用下载工具，更没法实现断点续传 5.使用图形验证码 缺点: 影响用户体验 6. 使用动">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T10:34:32.997Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="莫名四下里">
-<meta name="twitter:description" content="学海无涯,不求甚解">
+<meta name="twitter:title" content="高并发优化记录">
+<meta name="twitter:description" content="流量优化(目的:可以使用下载工具下载，又可以防止盗链的方法)     序号 优化方法 解决方案     1 防盗链处理 1. 判断引用地址,判断浏览器请求时HTTP头的Referer字段的值 2.使用登录验证 缺点是访客无法匿名下载 3. 使用cookie 缺点: 同 2 4. 使用POST下载 缺点: 无法使用下载工具，更没法实现断点续传 5.使用图形验证码 缺点: 影响用户体验 6. 使用动">
 
 
 
@@ -152,13 +153,13 @@ var _hmt = _hmt || [];
 
 
 
-  <link rel="canonical" href="https://wujianan.github.io/categories/linux/">
+  <link rel="canonical" href="https://wujianan.github.io/2019/05/28/1/">
 
 
 
 
 
-  <title>分类: linux | 莫名四下里</title>
+  <title>高并发优化记录 | 莫名四下里</title>
   
 
 
@@ -187,7 +188,7 @@ var _hmt = _hmt || [];
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -353,53 +354,436 @@ var _hmt = _hmt || [];
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>linux<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wujianan.github.io/2019/05/28/1/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="莫名四下里">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/head.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="莫名四下里">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/05/28/Linux服务器使用ssh连接/" itemprop="url">
-              
-                <span itemprop="name">Linux服务器使用ssh连接</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">高并发优化记录</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-28T13:47:17+08:00" content="2019-05-28">
-          05-28
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T18:29:01+08:00">
+                2019-05-28
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/高并发/" itemprop="url" rel="index">
+                    <span itemprop="name">高并发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>流量优化(目的:可以使用下载工具下载，又可以防止盗链的方法)</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>优化方法</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>防盗链处理</td>
+<td>1. 判断引用地址,判断浏览器请求时HTTP头的Referer字段的值 2.使用登录验证 缺点是访客无法匿名下载 3. 使用cookie 缺点: 同 2 4. 使用POST下载 缺点: 无法使用下载工具，更没法实现断点续传 5.使用图形验证码 缺点: 影响用户体验 6. 使用动态文件名 7. 擅改资源的内容 8.打包下载 缺点:需要解压缩</td>
+</tr>
+<tr>
+<td>2</td>
+<td>图片处理</td>
+<td>将多种按钮 提示 图片 合成一张图</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Js. Css 合并</td>
+<td>压缩工具: 在线压缩,YUI Compressor等等</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<ol start="2">
+<li>前端优化</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>优化方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>减少HTTP请求</td>
+</tr>
+<tr>
+<td>2</td>
+<td>异步请求</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>浏览器缓存和文件压缩</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>CDN 加速</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>建立独立的图片服务器</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>服务端优化</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>优化方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>页面静态化</td>
+</tr>
+<tr>
+<td>2</td>
+<td>并发处理</td>
+</tr>
+<tr>
+<td>3</td>
+<td>队列处理</td>
+</tr>
+</tbody>
+</table>
+<ol start="4">
+<li>数据库优化</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>优化方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>数据库缓存</td>
+<td>redis/Memcache</td>
+</tr>
+<tr>
+<td>2</td>
+<td>分库分表\分区操作</td>
+<td>主从复制</td>
+</tr>
+<tr>
+<td>3</td>
+<td>读写分离</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>负载均衡</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>数据库优化方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>数据类型优化</td>
+<td>按需选择数据类型 1. 整型&gt;datetime 2. 整型&gt;date&gt;time&gt;enum,char&gt;varchar&gt;blob&gt;text 3. 够用就行 大的字段浪费内存,影响速度 4. 避免使用null (不利于索引,要用特殊字节标注,在磁盘上占据空间更大)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>索引优化(理想索引: 查询频繁,区分度高,长度小,尽可能覆盖常用查询字段 常用方法: 截取不同长度,测试其区分度(0.1 可以接受))</td>
+<td>1. 合适字段创建合适索引(where列上创建索引) 2. 复杂索引的前缀原则 3. like %a% 索引失效 4.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SQL语句优化</td>
+<td>1. 优化查询过程中的数据访问(按需查询,limit,列名) 2. 优化长难句的查询语句(变复杂为简单,切分查询.分解) 3. 特定查询语句 limit count 子查询 groupby</td>
+</tr>
+<tr>
+<td>4</td>
+<td>存储引擎优化</td>
+<td>行级锁,事务,外键,独立表空间</td>
+</tr>
+<tr>
+<td>5</td>
+<td>数据表设计优化</td>
+<td>分区操作,分库分表</td>
+</tr>
+<tr>
+<td>6</td>
+<td>数据库架构优化</td>
+<td>1.主从复制 2. 读写分离 3. 双主热备 4. 负载均衡</td>
+</tr>
+</tbody>
+</table>
+<ol start="5">
+<li>web服务器优化<br>负载均衡  反向代理</li>
+</ol>
 
       
     </div>
+    
+    
+    
+<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2019/05/28/1/">高并发优化记录</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 莫名四下里 的个人博客">莫名四下里</a></p>
+  <p><span>发布时间:</span>2019年05月28日 - 18:05</p>
+  <p><span>最后更新:</span>2019年05月28日 - 18:05</p>
+  <p><span>原始链接:</span><a href="/2019/05/28/1/" title="高并发优化记录">https://wujianan.github.io/2019/05/28/1/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://wujianan.github.io/2019/05/28/1/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
 
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpeg" alt="莫名四下里 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="莫名四下里 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/高并发/" rel="tag"><i class="fa fa-tag"></i>高并发</a>
+          
+            <a href="/tags/优化/" rel="tag"><i class="fa fa-tag"></i>优化</a>
+          
+            <a href="/tags/mysql/" rel="tag"><i class="fa fa-tag"></i>mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/28/Linux服务器使用ssh连接/" rel="next" title="Linux服务器使用ssh连接">
+                <i class="fa fa-chevron-left"></i> Linux服务器使用ssh连接
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -407,6 +791,15 @@ var _hmt = _hmt || [];
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDQ2MC8yMDk5Mg"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -684,6 +1077,10 @@ var _hmt = _hmt || [];
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -712,6 +1109,17 @@ var _hmt = _hmt || [];
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

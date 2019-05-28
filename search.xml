@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[高并发优化记录]]></title>
+    <url>%2F2019%2F05%2F28%2F1%2F</url>
+    <content type="text"><![CDATA[流量优化(目的:可以使用下载工具下载，又可以防止盗链的方法) 序号 优化方法 解决方案 1 防盗链处理 1. 判断引用地址,判断浏览器请求时HTTP头的Referer字段的值 2.使用登录验证 缺点是访客无法匿名下载 3. 使用cookie 缺点: 同 2 4. 使用POST下载 缺点: 无法使用下载工具，更没法实现断点续传 5.使用图形验证码 缺点: 影响用户体验 6. 使用动态文件名 7. 擅改资源的内容 8.打包下载 缺点:需要解压缩 2 图片处理 将多种按钮 提示 图片 合成一张图 3 Js. Css 合并 压缩工具: 在线压缩,YUI Compressor等等 前端优化 序号 优化方法 1 减少HTTP请求 2 异步请求 3 浏览器缓存和文件压缩 4 CDN 加速 5 建立独立的图片服务器 服务端优化 序号 优化方法 1 页面静态化 2 并发处理 3 队列处理 数据库优化 序号 优化方法 1 数据库缓存 redis/Memcache 2 分库分表\分区操作 主从复制 3 读写分离 4 负载均衡 序号 数据库优化方法 1 数据类型优化 按需选择数据类型 1. 整型&gt;datetime 2. 整型&gt;date&gt;time&gt;enum,char&gt;varchar&gt;blob&gt;text 3. 够用就行 大的字段浪费内存,影响速度 4. 避免使用null (不利于索引,要用特殊字节标注,在磁盘上占据空间更大) 2 索引优化(理想索引: 查询频繁,区分度高,长度小,尽可能覆盖常用查询字段 常用方法: 截取不同长度,测试其区分度(0.1 可以接受)) 1. 合适字段创建合适索引(where列上创建索引) 2. 复杂索引的前缀原则 3. like %a% 索引失效 4. 3 SQL语句优化 1. 优化查询过程中的数据访问(按需查询,limit,列名) 2. 优化长难句的查询语句(变复杂为简单,切分查询.分解) 3. 特定查询语句 limit count 子查询 groupby 4 存储引擎优化 行级锁,事务,外键,独立表空间 5 数据表设计优化 分区操作,分库分表 6 数据库架构优化 1.主从复制 2. 读写分离 3. 双主热备 4. 负载均衡 web服务器优化负载均衡 反向代理]]></content>
+      <categories>
+        <category>高并发</category>
+      </categories>
+      <tags>
+        <tag>高并发</tag>
+        <tag>优化</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux服务器使用ssh连接]]></title>
     <url>%2F2019%2F05%2F28%2FLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%2F</url>
-    <content type="text"><![CDATA[优秀的人，不是不合群，而是他们合群的人里面没有你 Linux服务器使用ssh连接参考资料 SSH的工作原理是将客户端程序连接到ssh服务器 Ubuntu(Centors类似 命令有所不同) 123456781.主配置文件于/etc/ssh/sshd_config2.Port 22 端口声明指定sshd服务器将侦听连接的端口 如需更改端口 直接添加后 测试完成 再删除 223.PermitRootLogin 选择是否允许root登录4.LoginGraceTime 指定在未成功登录的情况下保持连接活动的秒数sudo service ssh restart 重启服务sudo systemctl restart ssh 如何使用密钥登录SSH1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556 [root@7S ssh]# systemctl stop firewalld.service //关闭防火墙 [root@7S ssh]# systemctl is-enabled firewalld.service //查看防火墙状态 enabled [root@7S ssh]# firewall-cmd --zone=public --add-port=1212/tcp --permanent 添加 放行端口 1212 FirewallD is not running // 防火墙关闭 [root@7S ssh]# systemctl restart firewalld.service //启动 [root@7S ssh]# firewall-cmd --zone=public --add-port=1212/tcp --permanent //继续添加 success firewall-cmd --zone=public --list-ports //查看所有端口* 创建SSH密钥(本地的计算机上生成SSH密钥)ssh-keygen -t rsa //创建按 Enter 键接受默认值 (Mac)密钥在〜/.ssh/id_rsa.pub和〜/.ssh / id_rsa中 (window 系统不一样 Admin文件名不一样) /C/users/Admin/.ssh/id_rsassh-copy-id root@192.168.100.00 //将公钥复制到远程服务器 输入密码 下次不需要使用密码 即可登录更改 端口 登录ssh -p 1212 root@192.168.100.00 安全考虑 禁用密码验证/etc/ssh/sshd_configPasswordAuthentication no //去掉注释 改为 noPubkeyAuthentication yes // 默认不修改ChallengeResponseAuthentication no // 默认不修改sudo systemctl restart ssh //重启服务 如有错误 关闭SELinux 或者 向SELinux中添加修改的SSH端口(如下)1. 安装semanagesemanage是SELinux的管理工具，是用于向SELinux添加和修改ssh端口号* 安装依赖 yum install policycoreutils-python* 安装semanage yum provides semanage2:使用semanage向SELinux中添加我们刚刚添加的端口号(1212)查询当前 ssh 服务端口: semanage port -l | grep ssh向 SELinux 中添加我们需要添加的ssh端口(1212): semanage port -a -t ssh_port_t -p tcp 1212验证 ssh 端口是否添加成功: semanage port -l | grep ssh重启 ssh 服务: systemctl restart sshd.service第二种方法:1. ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.100.000 //将本机的id_rsa.pub公钥文件内容复制到远程目标机的.ssh/authorized_keys文件中2. 本地复制: scp .ssh/id_rsa.pub user@192.168.1.100:/home/root/ 服务器操作: mkdir -p /home/root/.ssh/ mv /home/root/id_rsa.pub /home/root/.ssh/authorized_keys //authorized_keys 必须如此命名 登录即可]]></content>
+    <content type="text"><![CDATA[刻意练习,每日精进 Linux服务器使用ssh连接参考资料 SSH的工作原理是将客户端程序连接到ssh服务器 Ubuntu(Centors类似 命令有所不同) 123456781.主配置文件于/etc/ssh/sshd_config2.Port 22 端口声明指定sshd服务器将侦听连接的端口 如需更改端口 直接添加后 测试完成 再删除 223.PermitRootLogin 选择是否允许root登录4.LoginGraceTime 指定在未成功登录的情况下保持连接活动的秒数sudo service ssh restart 重启服务sudo systemctl restart ssh 如何使用密钥登录SSH1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556 [root@7S ssh]# systemctl stop firewalld.service //关闭防火墙 [root@7S ssh]# systemctl is-enabled firewalld.service //查看防火墙状态 enabled [root@7S ssh]# firewall-cmd --zone=public --add-port=1212/tcp --permanent 添加 放行端口 1212 FirewallD is not running // 防火墙关闭 [root@7S ssh]# systemctl restart firewalld.service //启动 [root@7S ssh]# firewall-cmd --zone=public --add-port=1212/tcp --permanent //继续添加 success firewall-cmd --zone=public --list-ports //查看所有端口* 创建SSH密钥(本地的计算机上生成SSH密钥)ssh-keygen -t rsa //创建按 Enter 键接受默认值 (Mac)密钥在〜/.ssh/id_rsa.pub和〜/.ssh / id_rsa中 (window 系统不一样 Admin文件名不一样) /C/users/Admin/.ssh/id_rsassh-copy-id root@192.168.100.00 //将公钥复制到远程服务器 输入密码 下次不需要使用密码 即可登录更改 端口 登录ssh -p 1212 root@192.168.100.00 安全考虑 禁用密码验证/etc/ssh/sshd_configPasswordAuthentication no //去掉注释 改为 noPubkeyAuthentication yes // 默认不修改ChallengeResponseAuthentication no // 默认不修改sudo systemctl restart ssh //重启服务 如有错误 关闭SELinux 或者 向SELinux中添加修改的SSH端口(如下)1. 安装semanagesemanage是SELinux的管理工具，是用于向SELinux添加和修改ssh端口号* 安装依赖 yum install policycoreutils-python* 安装semanage yum provides semanage2:使用semanage向SELinux中添加我们刚刚添加的端口号(1212)查询当前 ssh 服务端口: semanage port -l | grep ssh向 SELinux 中添加我们需要添加的ssh端口(1212): semanage port -a -t ssh_port_t -p tcp 1212验证 ssh 端口是否添加成功: semanage port -l | grep ssh重启 ssh 服务: systemctl restart sshd.service第二种方法:1. ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.100.000 //将本机的id_rsa.pub公钥文件内容复制到远程目标机的.ssh/authorized_keys文件中2. 本地复制: scp .ssh/id_rsa.pub user@192.168.1.100:/home/root/ 服务器操作: mkdir -p /home/root/.ssh/ mv /home/root/id_rsa.pub /home/root/.ssh/authorized_keys //authorized_keys 必须如此命名 登录即可]]></content>
       <categories>
         <category>linux</category>
       </categories>
@@ -11,10 +24,5 @@
         <tag>linix</tag>
         <tag>ssh</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2019%2F05%2F28%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
   </entry>
 </search>
