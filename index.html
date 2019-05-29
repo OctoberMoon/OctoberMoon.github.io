@@ -517,6 +517,151 @@ var _hmt = _hmt || [];
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wujianan.github.io/2019/05/29/1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="莫名四下里">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/head.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="莫名四下里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/29/1/" itemprop="url">Centos防火墙操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-29T18:08:18+08:00">
+                2019-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux-Centos/" itemprop="url" rel="index">
+                    <span itemprop="name">linux,Centos</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1、firewalld的基本使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">启动：</span><br><span class="line">    systemctl start firewalld</span><br><span class="line">查看状态：</span><br><span class="line">    systemctl status firewalld</span><br><span class="line">停止：</span><br><span class="line">    systemctl disable firewalld</span><br><span class="line">禁用：</span><br><span class="line">    systemctl stop firewalld</span><br><span class="line">2.</span><br><span class="line">    systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。</span><br><span class="line">启动防火墙：</span><br><span class="line">    systemctl start firewalld.service</span><br><span class="line">关闭防火墙：</span><br><span class="line">    systemctl stop firewalld.service</span><br><span class="line">重启防火墙：</span><br><span class="line">    systemctl restart firewalld.service</span><br><span class="line">显示防火墙的状态：</span><br><span class="line">    systemctl status firewalld.service</span><br><span class="line">在开机时防火墙：</span><br><span class="line">    systemctl enable firewalld.service</span><br><span class="line">在开机时禁用防火墙：</span><br><span class="line">    systemctl disable firewalld.service</span><br><span class="line">查看防火墙是否开机启动：</span><br><span class="line">    systemctl is-enabled firewalld.service</span><br><span class="line">查看已启动的服务列表：</span><br><span class="line">    systemctl list-unit-files|grep enabled</span><br><span class="line">查看启动失败的服务列表：</span><br><span class="line">    systemctl --failed</span><br><span class="line">3.配置firewalld-cmd</span><br><span class="line"></span><br><span class="line">查看版本：</span><br><span class="line">    firewall-cmd --version</span><br><span class="line">查看帮助：</span><br><span class="line">    firewall-cmd --help</span><br><span class="line">显示状态：</span><br><span class="line">    firewall-cmd --state</span><br><span class="line">查看所有打开的端口：</span><br><span class="line">    firewall-cmd --zone=public --list-ports</span><br><span class="line">更新防火墙规则：</span><br><span class="line">    firewall-cmd --reload</span><br><span class="line">查看区域信息: </span><br><span class="line">    firewall-cmd --get-active-zones</span><br><span class="line">查看指定接口所属区域：</span><br><span class="line">    firewall-cmd --get-zone-of-interface=eth0</span><br><span class="line">拒绝所有包：</span><br><span class="line">    firewall-cmd --panic-on</span><br><span class="line">取消拒绝状态：</span><br><span class="line">    firewall-cmd --panic-off</span><br><span class="line">查看是否拒绝：</span><br><span class="line">    firewall-cmd --query-panic</span><br><span class="line">4：开启端口</span><br><span class="line">添加</span><br><span class="line">    firewall-cmd --zone=public --add-port=80/tcp --permanent  （--permanent永久生效，没有此参数重启后失效） #开启80端口</span><br><span class="line">重新载入</span><br><span class="line">    firewall-cmd --reload</span><br><span class="line">查看</span><br><span class="line">    firewall-cmd --zone=public --query-port=80/tcp  #查看80端口是否开放</span><br><span class="line">删除</span><br><span class="line">    firewall-cmd --zone= public --remove-port=80/tcp --permanent #删除80端口配置</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+<div>
+      
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://wujianan.github.io/2019/05/28/1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -668,162 +813,11 @@ var _hmt = _hmt || [];
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wujianan.github.io/2019/05/28/1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="莫名四下里">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/head.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="莫名四下里">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/28/1/" itemprop="url">安装PHP7.2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T19:08:23+08:00">
-                2019-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当我们用Homebrew安装应用时，会出现此问题，显示Homebrew无法访问这些位置并添加在OS X上为您安装软件所需的文件</p>
-<p>对于上面问题，我们应尝试回收权限，解决方案如下：<br>首先打开终端，然后输入：</p>
-<p>sudo chown -R <code>whoami</code>:admin /usr/local/bin</p>
-<p>接着系统会提醒你输入密码,输入密码回车之后接着输入：</p>
-<p>sudo chown -R <code>whoami</code>:admin /usr/local/share</p>
-<h2 id="之后就能在终端中用brew-install-安装文件了"><a href="#之后就能在终端中用brew-install-安装文件了" class="headerlink" title="之后就能在终端中用brew install 安装文件了"></a>之后就能在终端中用brew install 安装文件了</h2><p>安装 PHP7.2 来代替系统自带的 PHP7.1：<br>brew tap homebrew/homebrew-core<br>brew install php72<br>echo export PATH=”$(brew –prefix homebrew/php/php72)/bin:$PATH” &gt;&gt; ~/.bash_profile # 代替系统自带的 php<br>echo export PATH=”$(brew –prefix homebrew/php/php72)/sbin:$PATH” &gt;&gt; ~/.bash_profile # 代替系统自带的 php-fpm<br>source ~/.</p>
-<p>sudo killall php-fpm &amp;&amp; sudo php-fpm</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-<div>
-      
-</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -871,7 +865,7 @@ var _hmt = _hmt || [];
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -882,7 +876,7 @@ var _hmt = _hmt || [];
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -893,7 +887,7 @@ var _hmt = _hmt || [];
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -998,7 +992,7 @@ var _hmt = _hmt || [];
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共2.4k字</span>
+  <span class="post-count">博客全站共2.7k字</span>
 </div>
         
 
