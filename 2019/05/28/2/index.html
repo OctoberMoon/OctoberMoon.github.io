@@ -112,18 +112,18 @@ var _hmt = _hmt || [];
 
 
 
-<meta name="description" content="当我们用Homebrew安装应用时，会出现此问题，显示Homebrew无法访问这些位置并添加在OS X上为您安装软件所需的文件 对于上面问题，我们应尝试回收权限，解决方案如下：首先打开终端，然后输入： sudo chown -R whoami:admin /usr/local/bin 接着系统会提醒你输入密码,输入密码回车之后接着输入： sudo chown -R whoami:admin /us">
+<meta name="description" content="刻意练习,每日精进  当我们用Homebrew安装应用时，会出现此问题，显示Homebrew无法访问这些位置并添加在OS X上为您安装软件所需的文件 对于上面问题，我们应尝试回收权限，解决方案如下：首先打开终端，然后输入： sudo chown -R whoami:admin /usr/local/bin 接着系统会提醒你输入密码,输入密码回车之后接着输入： sudo chown -R whoam">
 <meta name="keywords" content="php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装PHP7.2">
 <meta property="og:url" content="https://wujianan.github.io/2019/05/28/2/index.html">
 <meta property="og:site_name" content="莫名四下里">
-<meta property="og:description" content="当我们用Homebrew安装应用时，会出现此问题，显示Homebrew无法访问这些位置并添加在OS X上为您安装软件所需的文件 对于上面问题，我们应尝试回收权限，解决方案如下：首先打开终端，然后输入： sudo chown -R whoami:admin /usr/local/bin 接着系统会提醒你输入密码,输入密码回车之后接着输入： sudo chown -R whoami:admin /us">
+<meta property="og:description" content="刻意练习,每日精进  当我们用Homebrew安装应用时，会出现此问题，显示Homebrew无法访问这些位置并添加在OS X上为您安装软件所需的文件 对于上面问题，我们应尝试回收权限，解决方案如下：首先打开终端，然后输入： sudo chown -R whoami:admin /usr/local/bin 接着系统会提醒你输入密码,输入密码回车之后接着输入： sudo chown -R whoam">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-29T15:09:17.590Z">
+<meta property="og:updated_time" content="2019-05-29T15:19:20.494Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装PHP7.2">
-<meta name="twitter:description" content="当我们用Homebrew安装应用时，会出现此问题，显示Homebrew无法访问这些位置并添加在OS X上为您安装软件所需的文件 对于上面问题，我们应尝试回收权限，解决方案如下：首先打开终端，然后输入： sudo chown -R whoami:admin /usr/local/bin 接着系统会提醒你输入密码,输入密码回车之后接着输入： sudo chown -R whoami:admin /us">
+<meta name="twitter:description" content="刻意练习,每日精进  当我们用Homebrew安装应用时，会出现此问题，显示Homebrew无法访问这些位置并添加在OS X上为您安装软件所需的文件 对于上面问题，我们应尝试回收权限，解决方案如下：首先打开终端，然后输入： sudo chown -R whoami:admin /usr/local/bin 接着系统会提醒你输入密码,输入密码回车之后接着输入： sudo chown -R whoam">
 
 
 
@@ -447,12 +447,17 @@ var _hmt = _hmt || [];
       
 
       
-        <p>当我们用Homebrew安装应用时，会出现此问题，显示Homebrew无法访问这些位置并添加在OS X上为您安装软件所需的文件</p>
+        <blockquote class="blockquote-center"><p>刻意练习,每日精进</p>
+</blockquote>
+<p>当我们用Homebrew安装应用时，会出现此问题，显示Homebrew无法访问这些位置并添加在OS X上为您安装软件所需的文件</p>
 <p>对于上面问题，我们应尝试回收权限，解决方案如下：<br>首先打开终端，然后输入：</p>
 <p>sudo chown -R <code>whoami</code>:admin /usr/local/bin</p>
 <p>接着系统会提醒你输入密码,输入密码回车之后接着输入：</p>
 <p>sudo chown -R <code>whoami</code>:admin /usr/local/share</p>
-<h2 id="之后就能在终端中用brew-install-安装文件了"><a href="#之后就能在终端中用brew-install-安装文件了" class="headerlink" title="之后就能在终端中用brew install 安装文件了"></a>之后就能在终端中用brew install 安装文件了</h2><p>安装 PHP7.2 来代替系统自带的 PHP7.1：<br>brew tap homebrew/homebrew-core<br>brew install php72<br>echo export PATH=”$(brew –prefix homebrew/php/php72)/bin:$PATH” &gt;&gt; ~/.bash_profile # 代替系统自带的 php<br>echo export PATH=”$(brew –prefix homebrew/php/php72)/sbin:$PATH” &gt;&gt; ~/.bash_profile # 代替系统自带的 php-fpm<br>source ~/.</p>
+<p>之后就能在终端中用brew install 安装文件了</p>
+<a id="more"></a>
+<hr>
+<p>安装 PHP7.2 来代替系统自带的 PHP7.1：<br>brew tap homebrew/homebrew-core<br>brew install php72<br>echo export PATH=”$(brew –prefix homebrew/php/php72)/bin:$PATH” &gt;&gt; ~/.bash_profile # 代替系统自带的 php<br>echo export PATH=”$(brew –prefix homebrew/php/php72)/sbin:$PATH” &gt;&gt; ~/.bash_profile # 代替系统自带的 php-fpm<br>source ~/.</p>
 <p>sudo killall php-fpm &amp;&amp; sudo php-fpm</p>
 
       
@@ -649,17 +654,8 @@ var jiathis_config={
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -764,22 +760,6 @@ var jiathis_config={
       </section>
 
       
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#之后就能在终端中用brew-install-安装文件了"><span class="nav-number">1.</span> <span class="nav-text">之后就能在终端中用brew install 安装文件了</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
       
 
@@ -819,7 +799,7 @@ var jiathis_config={
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共2.8k字</span>
+  <span class="post-count">博客全站共2.9k字</span>
 </div>
         
 
