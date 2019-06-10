@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ssh闲置时间过长而断开]]></title>
+    <url>%2F2019%2F06%2F10%2F1%2F</url>
+    <content type="text"><![CDATA[刻意练习,每日精进 方法一、 修改/etc/ssh/sshd_config配置文件，找到ClientAliveCountMax（单位为分钟）修改你想要的值， 执行service sshd reload 方法二、 找到所在用户的.ssh目录,如root用户该目录在： /root/.ssh/ 在该目录创建config文件 vi /root/.ssh/config 加入下面一句： ServerAliveInterval 60 保存退出，重新开启root用户的shell，则再ssh远程服务器的时候， 不会因为长时间操作断开。应该是加入这句之后，ssh客户端会每隔一 段时间自动与ssh服务器通信一次，所以长时间操作不会断开。方法三、 修改/etc/profile配置文件 # vi /etc/profile 增加：TMOUT=1800 这样30分钟没操作就自动LOGOUT 方法四、 利用expect 模拟键盘动作，在闲置时间之内模拟地给个键盘响应,将下列代码保存为xxx，然后用expect执行 #!/usr/bin/expect set timeout 60 spawn ssh user@host interact { timeout 300 {send &quot;\x20&quot;} } expect xxx 接着按提示输入密码就可以了，这样每隔300秒就会自动打一个空格(\x20)，具体的时间间隔可以根据具体情况设置。 方法五、windows下通过工具连接，可以设置为secureCRT：选项—终端—反空闲 中设置每隔多少秒发送一个字符串，或者是NO-OP协议包putty：putty -&gt; Connection -&gt; Seconds between keepalives ( 0 to turn off ), 默认为0, 改为300. Mac 设置 profiles -&gt; session -&gt; “when idle,send ASCII code “ 选中 修改为 30 seconds]]></content>
+      <categories>
+        <category>ssh</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ARTS_9]]></title>
     <url>%2F2019%2F06%2F04%2F1%2F</url>
     <content type="text"><![CDATA[刻意练习,每日精进 移除元素123456789101112131415161718 class Solution &#123; /** * @param Integer[] $nums * @param Integer $val * @return Integer */ function removeElement(&amp;$nums, $val) &#123; $j = 0; for ($i=0;$i&lt; count($nums);$i++)&#123; if($nums[$i] != $val)&#123; $nums[$j] = $nums[$i]; $j++; &#125; &#125; return $j; &#125;&#125; ReviewThe Cashless Economy. 原文 Tipsdocker 学习 ShareDocker Contos 搭建 PHP 环境]]></content>
@@ -129,16 +140,16 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux服务器使用ssh连接]]></title>
+    <title><![CDATA[Linux服务器使用ssh连接 实现免登陆]]></title>
     <url>%2F2019%2F05%2F28%2F4%2F</url>
-    <content type="text"><![CDATA[刻意练习,每日精进 Linux服务器使用ssh连接参考资料 SSH的工作原理是将客户端程序连接到ssh服务器 Ubuntu(Centors类似 命令有所不同) 123456781.主配置文件于/etc/ssh/sshd_config2.Port 22 端口声明指定sshd服务器将侦听连接的端口 如需更改端口 直接添加后 测试完成 再删除 223.PermitRootLogin 选择是否允许root登录4.LoginGraceTime 指定在未成功登录的情况下保持连接活动的秒数sudo service ssh restart 重启服务sudo systemctl restart ssh 如何使用密钥登录SSH1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556 [root@7S ssh]# systemctl stop firewalld.service //关闭防火墙 [root@7S ssh]# systemctl is-enabled firewalld.service //查看防火墙状态 enabled [root@7S ssh]# firewall-cmd --zone=public --add-port=1212/tcp --permanent 添加 放行端口 1212 FirewallD is not running // 防火墙关闭 [root@7S ssh]# systemctl restart firewalld.service //启动 [root@7S ssh]# firewall-cmd --zone=public --add-port=1212/tcp --permanent //继续添加 success firewall-cmd --zone=public --list-ports //查看所有端口* 创建SSH密钥(本地的计算机上生成SSH密钥)ssh-keygen -t rsa //创建按 Enter 键接受默认值 (Mac)密钥在〜/.ssh/id_rsa.pub和〜/.ssh / id_rsa中 (window 系统不一样 Admin文件名不一样) /C/users/Admin/.ssh/id_rsassh-copy-id root@192.168.100.00 //将公钥复制到远程服务器 输入密码 下次不需要使用密码 即可登录更改 端口 登录ssh -p 1212 root@192.168.100.00 安全考虑 禁用密码验证/etc/ssh/sshd_configPasswordAuthentication no //去掉注释 改为 noPubkeyAuthentication yes // 默认不修改ChallengeResponseAuthentication no // 默认不修改sudo systemctl restart ssh //重启服务 如有错误 关闭SELinux 或者 向SELinux中添加修改的SSH端口(如下)1. 安装semanagesemanage是SELinux的管理工具，是用于向SELinux添加和修改ssh端口号* 安装依赖 yum install policycoreutils-python* 安装semanage yum provides semanage2:使用semanage向SELinux中添加我们刚刚添加的端口号(1212)查询当前 ssh 服务端口: semanage port -l | grep ssh向 SELinux 中添加我们需要添加的ssh端口(1212): semanage port -a -t ssh_port_t -p tcp 1212验证 ssh 端口是否添加成功: semanage port -l | grep ssh重启 ssh 服务: systemctl restart sshd.service第二种方法:1. ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.100.000 //将本机的id_rsa.pub公钥文件内容复制到远程目标机的.ssh/authorized_keys文件中2. 本地复制: scp .ssh/id_rsa.pub user@192.168.1.100:/home/root/ 服务器操作: mkdir -p /home/root/.ssh/ mv /home/root/id_rsa.pub /home/root/.ssh/authorized_keys //authorized_keys 必须如此命名 登录即可]]></content>
+    <content type="text"><![CDATA[刻意练习,每日精进 Linux服务器使用ssh连接 实现免登陆参考资料 SSH的工作原理是将客户端程序连接到ssh服务器 Ubuntu(Centors类似 命令有所不同) 123456781.主配置文件于/etc/ssh/sshd_config2.Port 22 端口声明指定sshd服务器将侦听连接的端口 如需更改端口 直接添加后 测试完成 再删除 223.PermitRootLogin 选择是否允许root登录4.LoginGraceTime 指定在未成功登录的情况下保持连接活动的秒数sudo service ssh restart 重启服务sudo systemctl restart ssh 如何使用密钥登录SSH1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556 [root@7S ssh]# systemctl stop firewalld.service //关闭防火墙 [root@7S ssh]# systemctl is-enabled firewalld.service //查看防火墙状态 enabled [root@7S ssh]# firewall-cmd --zone=public --add-port=1212/tcp --permanent 添加 放行端口 1212 FirewallD is not running // 防火墙关闭 [root@7S ssh]# systemctl restart firewalld.service //启动 [root@7S ssh]# firewall-cmd --zone=public --add-port=1212/tcp --permanent //继续添加 success firewall-cmd --zone=public --list-ports //查看所有端口* 创建SSH密钥(本地的计算机上生成SSH密钥)ssh-keygen -t rsa //创建按 Enter 键接受默认值 (Mac)密钥在〜/.ssh/id_rsa.pub和〜/.ssh / id_rsa中 (window 系统不一样 Admin文件名不一样) /C/users/Admin/.ssh/id_rsassh-copy-id root@192.168.100.00 //将公钥复制到远程服务器 输入密码 下次不需要使用密码 即可登录更改 端口 登录ssh -p 1212 root@192.168.100.00 安全考虑 禁用密码验证/etc/ssh/sshd_configPasswordAuthentication no //去掉注释 改为 noPubkeyAuthentication yes // 默认不修改ChallengeResponseAuthentication no // 默认不修改sudo systemctl restart ssh //重启服务 如有错误 关闭SELinux 或者 向SELinux中添加修改的SSH端口(如下)1. 安装semanagesemanage是SELinux的管理工具，是用于向SELinux添加和修改ssh端口号* 安装依赖 yum install policycoreutils-python* 安装semanage yum provides semanage2:使用semanage向SELinux中添加我们刚刚添加的端口号(1212)查询当前 ssh 服务端口: semanage port -l | grep ssh向 SELinux 中添加我们需要添加的ssh端口(1212): semanage port -a -t ssh_port_t -p tcp 1212验证 ssh 端口是否添加成功: semanage port -l | grep ssh重启 ssh 服务: systemctl restart sshd.service第二种方法:1. ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.100.000 //将本机的id_rsa.pub公钥文件内容复制到远程目标机的.ssh/authorized_keys文件中2. 本地复制: scp .ssh/id_rsa.pub user@192.168.1.100:/home/root/ 服务器操作: mkdir -p /home/root/.ssh/ mv /home/root/id_rsa.pub /home/root/.ssh/authorized_keys //authorized_keys 必须如此命名 登录即可]]></content>
       <categories>
         <category>linux</category>
         <category>ssh</category>
       </categories>
       <tags>
-        <tag>linix</tag>
         <tag>ssh</tag>
+        <tag>linix</tag>
       </tags>
   </entry>
 </search>
